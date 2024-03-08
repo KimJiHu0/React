@@ -51,7 +51,8 @@ Component 아키텍처로 독립적인 기능을 수행하는 Component를 사�
     node -v
     ```
 -   React를 쉽게 생성할 수 있도록 도와주는 Tools
-    Tool을 설치해도 되지만 설치 없이 간단한 공부를 위한 홈페이지도 이용할 수 있다. stackblitz.com
+    Tool을 설치해도 되지만 설치 없이 간단한 공부를 위한 홈페이지도 이용할 수 있다.
+    https://stackblitz.com/
     ```
     # 명령어가 에러나면 풀권한을 때려 앞에 sudo를 붙여보자
     # -g는 해당 도구를 전역(global)으로 저장하는 방법이다.
@@ -84,3 +85,10 @@ Component 아키텍처로 독립적인 기능을 수행하는 Component를 사�
     # 이 떄 에러 경로 중 마지막 파일명을 뺴면 해당 파일의 상위 파일에 권한이 부여되어서 실행이 가능해짐.
     sudo chown -R $USER 에러경로(node_modules 전까지, 프로젝트의 모든 경로에 권한 부여)
     ```
+
+<hr/>
+
+## React Develop Tools
+
+Chrome에서 확장 프로그램에서 **React Develop Tools**를 다운로드 한다.
+이는 개발자가 Component 구조로 Element를 쉽게 확인할 수 있을 뿐만아니라 State에 대한 값을 console.log로 찍지 않고 쉽게 확인할 수 있다.
