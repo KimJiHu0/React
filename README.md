@@ -48,7 +48,7 @@ function A(){
 
 ---
 
-### 데이터를 Component 뿌려주기
+### 데이터를 Component 출력 시 주의사항
 
 > JSX에서 데이터를 뿌려줄 때에는 {}를 사용한다. 다만 in-line Style인 경우 기본적으로 {}을 사용하는데, 데이터를 그 안에 넣고 싶을 경우에는 {{}} 로 사용한다. 또한 in-line Style의 경우 `background-color`처럼 하이폰을 사용해선 안되고 `backgroundColor` 처럼 카멜케이스를 사용한다.
 
