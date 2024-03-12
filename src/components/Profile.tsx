@@ -1,3 +1,4 @@
+// Component에 Data 뿌려주는 방법
 // React function에서 데이터를 사용하기 위헤서는 {} 을 사용해야한다.
 const user = {
     name: 'LEE',
