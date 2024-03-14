@@ -60,3 +60,69 @@ const style = {
 }
 <div style={{width: style.size, height: style.size, backgroundColor: style.background}}></div>
 ```
+
+---
+
+### 조건부 랜더링
+
+> 조건부 랜더링 시 `&&`연산자를 사용하는 경우가 있는데, 그 때 받는 값이 0일 때에는 `false`라서 조건에 타진 않지만 0이라는 값이 찍히게 된다. 이러한 실수가 많이 발생하기 때문에 조건부 랜더링 시 `if...else`를 사용하거나 `condifion ? true일 경우 : false일 경우` 식을 써주는 것이 좋다.
+
+---
+
+### 목록 LIST 랜더링
+
+> 배열을 순회하며 태그를 만들어 놓은 변수를 `return`해도 되며, `return`안에서 배열을 순회해서 필요한 부분만 만들어도 된다.
+
+> `react_jsx-dev-runtime.js?v=bfbc4c87:62 Warning: Each child in a list should have a unique "key" prop.` 만일 배열을 순회하며 태그를 생성할 때 key Attribute를 넣지 않으면 위와 같은 에러가 발생할 수 있으니 꼭 추가해야한다.
+
+```
+export default function Test() {
+  const list = [1,2,3];
+  return <>
+    <ul>
+      list.map(el => <li>{el}</li>)
+    </ul>
+  </>
+}
+```
+
+---
+
+### 이벤트 응답하기
+
+> onClick에 괄호를 쓴 것과 안쓴 것은 차이가 있다.
+
+-   `clickFunction` 일 경우
+
+    ```
+    // 이벤트 응답하기
+    export default function Button() {
+        // 내부 함수로 이벤트 응답하기
+        function clickFunction() {
+            alert('Click!');
+        }
+        return <button onClick={clickFunction}>Click</button>;
+    }
+
+    ```
+
+    return이 없는 실행형 함수이다. onClick, onChange 등등 Attribute는 함수를 받아야하는 이벤트로서 clickFunction을 함수로 선언하면 된다.
+
+-   `clickFunction()` 일 경우
+
+    ```
+    // 이벤트 응답하기
+    export default function Button() {
+        // 내부 함수로 이벤트 응답하기
+        function clickFunction() {
+            return () => {
+                alert('Hi')
+            }
+        }
+        return <button onClick={clickFunction()}>Click</button>;
+    }
+
+    ```
+
+    만일 위 예제처럼 return이 없는 실행형 함수는 애플리케이션이 실행하자마자 함수가 두 번 실행된다. 이는 main.tsx에서 `<React.StrictMode>` 때문이다. 이 태그는 스크립트가 올바른지 확인하기 위해 두 번 실행하여 발생한다.
+    `clickFunction()`으로 선언한 경우 clickFunction 함수는 함수를 return하는 함수여야 한다.
