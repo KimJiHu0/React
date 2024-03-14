@@ -130,3 +130,25 @@ export default function Test() {
 ---
 
 ### 화면 업데이트하기
+
+> `import { useState } from 'react'`
+> 화면은 그대로 있고 데이터를 수정하기 위해서는 useState를 사용한다.
+> 또한 useState를 사용한 동일한 컴포넌트를 여러번 중첩해서 사용하면 각각의 고유한 상태를 갖는다.
+
+---
+
+### Hook 사용하기
+
+> use로 시작하는 것을 Hook이라고 한다. 따라서 useState도 React에서 제공하는 빌트인 Hook이다. Hook은 컴포넌트 최상위에서만 사용이 가능하다. 즉 useEffect 안에 useId를 사용할 수 없다. 또는 함수 안에 use Hook을 사용할 수 없다.
+
+```
+// Error
+useEffect(() => {
+    console.log(useId())
+}, [count]);
+function fn() {
+    console.log(useId());
+}
+```
+
+---

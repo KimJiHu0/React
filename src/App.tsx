@@ -8,6 +8,8 @@ import List from './components/List.tsx';
 import Button from './components/Button.tsx';
 // 화면 업데이트 하기 ( useState )
 import View from './components/View.tsx';
+// Hook 사용하기
+import Hook from './components/Hook.tsx';
 
 // 실제 main.tsx의 root Element에 Render될 선언형 함수 컴포넌트.
 function App() {
@@ -45,6 +47,9 @@ function App() {
             <h3>화면 업데이트 하기</h3>
             <View />
             <View />
+            <hr />
+            <h3>Hook 사용하기</h3>
+            <Hook />
         </>
     );
 }
