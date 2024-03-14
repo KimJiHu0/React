@@ -6,6 +6,8 @@ import Profile from './components/Profile.tsx';
 import List from './components/List.tsx';
 // 이벤트 응답하기
 import Button from './components/Button.tsx';
+// 화면 업데이트 하기 ( useState )
+import View from './components/View.tsx';
 
 // 실제 main.tsx의 root Element에 Render될 선언형 함수 컴포넌트.
 function App() {
@@ -39,6 +41,10 @@ function App() {
             <hr />
             <h3>이벤트 응답하기</h3>
             <Button data={1} />
+            <hr />
+            <h3>화면 업데이트 하기</h3>
+            <View />
+            <View />
         </>
     );
 }

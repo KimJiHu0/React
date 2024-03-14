@@ -126,3 +126,7 @@ export default function Test() {
 
     만일 위 예제처럼 return이 없는 실행형 함수는 애플리케이션이 실행하자마자 함수가 두 번 실행된다. 이는 main.tsx에서 `<React.StrictMode>` 때문이다. 이 태그는 스크립트가 올바른지 확인하기 위해 두 번 실행하여 발생한다.
     `clickFunction()`으로 선언한 경우 clickFunction 함수는 함수를 return하는 함수여야 한다.
+
+---
+
+### 화면 업데이트하기
