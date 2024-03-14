@@ -1,4 +1,4 @@
-// 목록 List 랜더링
+// 목록 List 랜더링!
 export default function List() {
     const list = [
         { title: 'Cabbage', id: 1 },
