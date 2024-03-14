@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // 컴포넌트 생성 및 중첩 사용
 import Component from './components/Component.tsx';
 // Component에 Data 뿌리는 방법 및 조건부 랜더링
@@ -10,9 +11,15 @@ import Button from './components/Button.tsx';
 import View from './components/View.tsx';
 // Hook 사용하기
 import Hook from './components/Hook.tsx';
+// 컴포넌트 간 데이터 공유
+import Data from './components/Data.tsx';
 
 // 실제 main.tsx의 root Element에 Render될 선언형 함수 컴포넌트.
 function App() {
+    const [count, setCount] = useState(0);
+    function click() {
+        setCount(count + 1);
+    }
     const user1 = {
         name: 'LEE',
         backgroundColor: 'black',
@@ -50,6 +57,10 @@ function App() {
             <hr />
             <h3>Hook 사용하기</h3>
             <Hook />
+            <hr />
+            <h3>컴포넌트 간 데이터 공유</h3>
+            <Data count={count} setCount={click} />
+            <Data count={count} setCount={click} />
         </>
     );
 }
