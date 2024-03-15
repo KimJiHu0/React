@@ -103,3 +103,5 @@ export default function Board() {
 >
 > 1.  `export default function Board()`상단에서 winner를 체크해주는 함수를 속 실행할 것. 이는 빙고판의 위치를 클릭할 때마다 `useState` 값이 변경되며 랜더링이 다시 되어 winner를 체크해주는 함수를 실행하게 된다. 그래서 변경이 제대로 된 값을 가져올 수 있는 것이다.
 > 2.  `useEffect를` 사용하는 것. useEffect를 통해 squares의 변경값을 확인하면서 승자를 계속 체크하는 방법이다. `useEffect(() => {}, squares)` 함수 안에 `calculateWinner` 내 로직을 사용하면 된다.
+
+> 하지만 이럴 때에는 useEffect를 사용하는 것을 추천한다. 만일 A라는 컴포넌트 내에서 Button1, Button2 컴포넌트가 있다 치자. `export default function Board()` 최상단에서 체크로직을 썼다고 가정할 때 Button1 컴포넌트에서 발생하는 setState에 의해 랜더링이 다시 된다면 Button2에서 변경이 발생해서 체크해야할 함수가 있다면 해당 함수도 계속 실행이 될 것이다. 그러니 지정한 값이 바뀌면 함수를 호출하는 useEffect를 사용하면 조금 더 효울적으로 Button1, Button2의 체크로직을 각각 실행시킬 수 있는 것이다.
