@@ -10,6 +10,7 @@ export default function Board() {
     const [turn, setTurn] = useState('X');
 
     // 승자를 체크하는 함수
+    // 이 방법이 아닌 useEffect를 사용하는 방법도 있음.
     const calculateWinner = function (squares) {
         const lines = [
             [0, 1, 2],
@@ -32,7 +33,6 @@ export default function Board() {
 
     // 빙고를 클릭해서 useState가 변경될 때마다 React는 랜더링을 다시하며 계속 호출하게 됨.
     const win = calculateWinner(squares);
-    console.log('win : ', win);
 
     function buttonClick(index) {
         return () => {
@@ -60,7 +60,7 @@ export default function Board() {
 
     return (
         <>
-            <p>Now Player : {turn}</p>
+            {win != null ? <p>win {win}</p> : <p>Now Player : {turn}</p>}
             <div className="board-row">
                 <Square value={squares[0]} buttonClick={buttonClick(0)}></Square>
                 <Square value={squares[1]} buttonClick={buttonClick(1)}></Square>
@@ -76,7 +76,6 @@ export default function Board() {
                 <Square value={squares[7]} buttonClick={buttonClick(7)}></Square>
                 <Square value={squares[8]} buttonClick={buttonClick(8)}></Square>
             </div>
-            {win != null ? <p>win {win}</p> : ''}
         </>
     );
 }
