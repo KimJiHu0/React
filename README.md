@@ -12,3 +12,96 @@
 4. 클릭 시 비어있는 칸에만 해당 순서 값이 들어가도록
 5. 특정 조건(승리조건)에 대한 처리 => 승자 결정
 6. 히스토리를 쌓고 돌아가기 조건 만들기.
+
+---
+
+### 주의사항
+
+-   각각의 Square Component가 O 값인지 X 값인지 그의 부모 Component인 Board.tsx가 값을 알아야 한다. React는 부모 -> 자식으로 데이터 흐름이 단반향인 라이브러리이기 때문에 각각의 값을 부모에서 자식으로 props로 내려줘야 한다.
+
+-   게임을 만들면서 이슈가 발견되었다. useState에 값을 변경하고 나면 HTML(View)는 값이 바뀐 것으로 보이는데 실제로 해당 state를 console로 찍어보면 바뀌지 않았다. 그래서 버튼을 클릭했을 때 useState 값을 바꾸고나서 승자를 체크하는 함수 내에서는 클릭하여 변경된 값이 아닌 그 전 값이 가져와졌다. 이를 해결할 수 있는 방법은 아래와 같다.
+
+```
+function buttonClick(index) {
+import { useState, useEffect } from 'react';
+import '../assets/css/style.css';
+import Square from './Square';
+export default function Board() {
+    // 3 * 3 사이즈의 총 배열 ( 9칸 )
+    const [squares, setSquares] = useState(Array(9).fill(null));
+    // 시작은 X가 먼저하기 때문에 X를 기본 세팅으로 해주고 클릭 시 X를 넘겨주고 그 다음엔 O로 바꾸어 준다.
+    const [turn, setTurn] = useState('X');
+    // 승자 State
+    const win = calculateWinner(squares);
+
+    function calculateWinner(squares) {
+        const lines = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+        for (let i = 0; i < lines.length; i++) {
+            const [a, b, c] = lines[i];
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                return squares[a];
+            }
+        }
+        return null;
+    }
+
+    function buttonClick(index) {
+        return () => {
+            // 버튼클릭 시 해당 위치에 값이 존재하면 아무 행동도 할 수 없음.
+            if (squares[index] || win) {
+                return false;
+            }
+            // length가 9인 배열을 그대로 복사하는 행위
+            // JS는 객체 내부의 프로퍼티가 수정되어도 객체 자체가 수정되었다고 판단되지 않기 때문에
+            // 동작하지 않는다. : 불변성때문
+            // 그래서 새로운 배열을 반환해야한다.
+            const list = squares.slice();
+            // 복사한 배열에서 클릭한 index의 값을 바꿔주고
+            list[index] = turn;
+            // 값 그 자체를 통째로 담아주는 것
+            setSquares(list);
+            setTurn(turn == 'X' ? 'O' : 'X');
+        };
+    }
+
+    return (
+        <>
+            <p>Now Player : {turn}</p>
+            <div className="board-row">
+                <Square value={squares[0]} buttonClick={buttonClick(0)}></Square>
+                <Square value={squares[1]} buttonClick={buttonClick(1)}></Square>
+                <Square value={squares[2]} buttonClick={buttonClick(2)}></Square>
+            </div>
+            <div className="board-row">
+                <Square value={squares[3]} buttonClick={buttonClick(3)}></Square>
+                <Square value={squares[4]} buttonClick={buttonClick(4)}></Square>
+                <Square value={squares[5]} buttonClick={buttonClick(5)}></Square>
+            </div>
+            <div className="board-row">
+                <Square value={squares[6]} buttonClick={buttonClick(6)}></Square>
+                <Square value={squares[7]} buttonClick={buttonClick(7)}></Square>
+                <Square value={squares[8]} buttonClick={buttonClick(8)}></Square>
+            </div>
+            {win != null ? <p>win {win}</p> : ''}
+        </>
+    );
+}
+
+}
+```
+
+> `buttonClick` 함수를 살펴보면 `setSquares` 후에 `squares를` `console.log()`로 찍어보면 한 박자가 느린 경우가 발생한다. 이는 `useState가` 비동기이기 때문이다. 따라서 이 이슈를 피하기 위해서는 두 가지 방법이 존재한다.
+>
+> 1.  `export default function Board()`상단에서 winner를 체크해주는 함수를 속 실행할 것. 이는 빙고판의 위치를 클릭할 때마다 `useState` 값이 변경되며 랜더링이 다시 되어 winner를 체크해주는 함수를 실행하게 된다. 그래서 변경이 제대로 된 값을 가져올 수 있는 것이다.
+> 2.  `useEffect를` 사용하는 것. useEffect를 통해 squares의 변경값을 확인하면서 승자를 계속 체크하는 방법이다. `useEffect(() => {}, squares)` 함수 안에 `calculateWinner` 내 로직을 사용하면 된다.
+
+> 하지만 이럴 때에는 useEffect를 사용하는 것을 추천한다. 만일 A라는 컴포넌트 내에서 Button1, Button2 컴포넌트가 있다 치자. `export default function Board()` 최상단에서 체크로직을 썼다고 가정할 때 Button1 컴포넌트에서 발생하는 setState에 의해 랜더링이 다시 된다면 Button2에서 변경이 발생해서 체크해야할 함수가 있다면 해당 함수도 계속 실행이 될 것이다. 그러니 지정한 값이 바뀌면 함수를 호출하는 useEffect를 사용하면 조금 더 효울적으로 Button1, Button2의 체크로직을 각각 실행시킬 수 있는 것이다.
