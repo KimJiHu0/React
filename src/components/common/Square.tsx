@@ -1,5 +1,4 @@
-import '../assets/css/style.css';
-import { useState } from 'react';
+import '../../assets/css/style.css';
 
 export default function Square({ value, buttonClick }) {
     return (
