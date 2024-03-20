@@ -2,8 +2,10 @@
 import Gallery, { Profile } from './components/ImportExport/Gallery';
 // 여러 개의 컴포넌트가 있는 경우 대표 component만 import하여 아래처럼 컴포넌트명.함수명 으로 불러서 사용할 수 있다.
 import { Input } from './components/ImportExport/Input';
-
 import Card from './components/JSXMarkup/Card';
+import Layout from './components/Props/Layout';
+import Table from './components/Props/Table';
+
 export default function App() {
     const user = {
         name: 'LEE',
@@ -28,6 +30,11 @@ export default function App() {
             <hr />
             <h1>JSX 마크업</h1>
             <Card user={user} />
+            <hr />
+            <h1>Prop 전달</h1>
+            <Layout>
+                <Table {...user} />
+            </Layout>
         </>
     );
 }
