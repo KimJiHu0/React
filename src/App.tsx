@@ -5,6 +5,7 @@ import { Input } from './components/ImportExport/Input';
 import Card from './components/JSXMarkup/Card';
 import Layout from './components/Props/Layout';
 import Table from './components/Props/Table';
+import Items from './components/Render/Condition/Items';
 
 export default function App() {
     const user = {
@@ -35,6 +36,15 @@ export default function App() {
             <Layout>
                 <Table {...user} />
             </Layout>
+            <hr />
+            <h1>조건부 랜더링</h1>
+            <Items
+                items={[
+                    { isPacked: true, name: 'Space suit' },
+                    { isPacked: true, name: 'Helmet with a golden leaf' },
+                    { isPacked: false, name: 'Photo of Tam' },
+                ]}
+            />
         </>
     );
 }
