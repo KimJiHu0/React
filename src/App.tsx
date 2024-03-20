@@ -6,6 +6,7 @@ import Card from './components/JSXMarkup/Card';
 import Layout from './components/Props/Layout';
 import Table from './components/Props/Table';
 import Items from './components/Render/Condition/Items';
+import { List } from './components/Render/List/List';
 
 export default function App() {
     const user = {
@@ -45,6 +46,9 @@ export default function App() {
                     { isPacked: false, name: 'Photo of Tam' },
                 ]}
             />
+            <hr />
+            <h1>목록 랜더링</h1>
+            <List />
         </>
     );
 }
