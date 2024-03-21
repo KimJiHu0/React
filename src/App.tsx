@@ -13,6 +13,8 @@ export default function App() {
             <hr />
             <h1>배열 객체 업데이트</h1>
             <Sample3 />
+            <hr />
+            <h1>예제 풀기</h1>
             <Sample4 />
         </>
     );
