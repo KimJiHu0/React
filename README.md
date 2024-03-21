@@ -6,4 +6,5 @@
 1. 이벤트를 호출하는 두 가지 방법
 2. 이벤트 전파와 중지
 3. 이벤트 기본 동작 막기
-   https://www.notion.so/kimjihu-history/05-7b7f0c39b3614a43ad4a7bd9c78917d2
+
+https://www.notion.so/kimjihu-history/05-7b7f0c39b3614a43ad4a7bd9c78917d2
