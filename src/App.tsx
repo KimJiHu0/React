@@ -1,91 +1,59 @@
-// 버튼 컴포넌트
-const Button1 = function () {
-    // onClick에서 함수를 호출하는 두 가지 방법.
-    function handleClick() {
-        alert('Click!');
-    }
+// 동작하지 않음
+import { useState } from 'react';
 
-    function handleClick2() {
-        return () => {
-            alert('Click2');
-        };
-    }
-
+const Button1 = ({ index, handleClick }) => {
     return (
-        <>
-            <button onClick={handleClick}>Button1</button>
-            <button onClick={handleClick2()}>Button2</button>
-        </>
+        <p>
+            {index} <button onClick={handleClick}>++</button>
+        </p>
     );
 };
 
-// 버튼 컴포넌트
-const Button2 = ({ handleClick }) => {
-    return <button onClick={handleClick}>Button2</button>;
-};
+const Button2 = () => {
+    const [index, setIndex] = useState(0);
+    const handlePlus = () => {
+        setIndex(index + 1);
+    };
 
-const Button3 = ({ handleClick }) => {
     return (
-        <button
-            onClick={(e) => {
-                e.stopPropagation();
-                handleClick();
-            }}
-        >
-            Button3
-        </button>
+        <p>
+            {index} <button onClick={handlePlus}>++</button>
+        </p>
     );
 };
 
-const Form = ({ handleClick }) => {
-    console.log(handleClick);
+// State를 set 후 바로 사용하면 안됨.
+const Input = () => {
+    const [name, setName] = useState('');
+    const onInputClick = () => {
+        setName(prompt('이름을 입력해주세요.'));
+        console.log(name);
+    };
     return (
         <>
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    handleClick();
-                }}
-            >
-                <input />
-                <button>Send</button>
-            </form>
+            {name}
+            <button onClick={onInputClick}>이름 입력하기</button>
         </>
     );
 };
 
 export default function App() {
+    const [index, setIndex] = useState(0);
+    const handleClick = () => {
+        setIndex(index + 1);
+    };
     return (
         <>
-            <h1>이벤트(함수)를 호출하는 두 가지 방법</h1>
-            <Button1 />
+            <h1>State를 공유하는 방법</h1>
+            <Button1 index={index} handleClick={handleClick} />
+            <Button1 index={index} handleClick={handleClick} />
             <hr />
-            <h1>이벤트 핸들러 props로 던지기</h1>
-            <Button2
-                handleClick={() => {
-                    alert('Props!');
-                }}
-            />
+            <h1>State를 컴포넌트 각각 사용하는 방법</h1>
+            <Button2 />
+            <Button2 />
             <hr />
-            <h1>이벤트 전파 및 전파 중지</h1>
-            <div
-                onClick={() => {
-                    alert('Click Div');
-                }}
-            >
-                <Button3
-                    handleClick={() => {
-                        alert('Click Button');
-                    }}
-                />
-            </div>
-            <hr />
-            <h1>이벤트 기본 동작 방지</h1>
-            <Form
-                handleClick={() => {
-                    alert('Form Click');
-                }}
-            />
+            <h1>State후 바로 출력하면 안되는 이유</h1>
+            <Input />
         </>
     );
 }
