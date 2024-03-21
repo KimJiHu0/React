@@ -1,54 +1,91 @@
-// 하나의 컴포너느 내에서 export default와 export named를 동시에 사용할 수 있다.
-import Gallery, { Profile } from './components/ImportExport/Gallery';
-// 여러 개의 컴포넌트가 있는 경우 대표 component만 import하여 아래처럼 컴포넌트명.함수명 으로 불러서 사용할 수 있다.
-import { Input } from './components/ImportExport/Input';
-import Card from './components/JSXMarkup/Card';
-import Layout from './components/Props/Layout';
-import Table from './components/Props/Table';
-import Items from './components/Render/Condition/Items';
-import { List } from './components/Render/List/List';
+// 버튼 컴포넌트
+const Button1 = function () {
+    // onClick에서 함수를 호출하는 두 가지 방법.
+    function handleClick() {
+        alert('Click!');
+    }
 
-export default function App() {
-    const user = {
-        name: 'LEE',
-        age: 20,
-        theme: {
-            width: 100,
-            height: 100,
-            backgroundColor: 'black',
-        },
-    };
+    function handleClick2() {
+        return () => {
+            alert('Click2');
+        };
+    }
+
     return (
         <>
-            <h1>Component Import & Export</h1>
-            <p>Gallery Import</p>
-            <Gallery />
-            <p>Gallery/Profile Import</p>
-            <Profile name={'LEE'} />
-            <p>Input</p>
-            <Input />
-            <p>이렇게 Input.tsx 안에 별로도 생성된 컴포넌트도 사용 가능하다.</p>
-            <Input.Input />
+            <button onClick={handleClick}>Button1</button>
+            <button onClick={handleClick2()}>Button2</button>
+        </>
+    );
+};
+
+// 버튼 컴포넌트
+const Button2 = ({ handleClick }) => {
+    return <button onClick={handleClick}>Button2</button>;
+};
+
+const Button3 = ({ handleClick }) => {
+    return (
+        <button
+            onClick={(e) => {
+                e.stopPropagation();
+                handleClick();
+            }}
+        >
+            Button3
+        </button>
+    );
+};
+
+const Form = ({ handleClick }) => {
+    console.log(handleClick);
+    return (
+        <>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleClick();
+                }}
+            >
+                <input />
+                <button>Send</button>
+            </form>
+        </>
+    );
+};
+
+export default function App() {
+    return (
+        <>
+            <h1>이벤트(함수)를 호출하는 두 가지 방법</h1>
+            <Button1 />
             <hr />
-            <h1>JSX 마크업</h1>
-            <Card user={user} />
-            <hr />
-            <h1>Prop 전달</h1>
-            <Layout>
-                <Table {...user} />
-            </Layout>
-            <hr />
-            <h1>조건부 랜더링</h1>
-            <Items
-                items={[
-                    { isPacked: true, name: 'Space suit' },
-                    { isPacked: true, name: 'Helmet with a golden leaf' },
-                    { isPacked: false, name: 'Photo of Tam' },
-                ]}
+            <h1>이벤트 핸들러 props로 던지기</h1>
+            <Button2
+                handleClick={() => {
+                    alert('Props!');
+                }}
             />
             <hr />
-            <h1>목록 랜더링</h1>
-            <List />
+            <h1>이벤트 전파 및 전파 중지</h1>
+            <div
+                onClick={() => {
+                    alert('Click Div');
+                }}
+            >
+                <Button3
+                    handleClick={() => {
+                        alert('Click Button');
+                    }}
+                />
+            </div>
+            <hr />
+            <h1>이벤트 기본 동작 방지</h1>
+            <Form
+                handleClick={() => {
+                    alert('Form Click');
+                }}
+            />
         </>
     );
 }
