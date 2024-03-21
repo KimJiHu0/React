@@ -24,7 +24,12 @@ export default function App() {
     };
     return (
         <>
+            <h1>랜더링이 되는 컴포넌트</h1>
+            <p>아래 Button1 컴포넌트는 App에서 변경된 index라는 State를 props로 전달받고 있어서 리랜더링이 된다.</p>
             <Button1 index={index} handleClick={handleClick} />
+            <hr />
+            <h1>랜더링이 되지 않는 컴포넌트</h1>
+            <p>아래 Text 컴포넌트는 State를 props로 전달받지 않고 있기 때문에 리랜더링이 되지 않는다.</p>
             <Text />
         </>
     );
