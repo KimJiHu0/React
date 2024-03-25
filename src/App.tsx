@@ -1,18 +1,27 @@
-import { useReducer } from 'react';
+import Children1 from './assets/components/Children1.js';
+import Children2 from './assets/components/Children2.js';
 
-import Input from './assets/components/Input';
-import List from './assets/components/List';
-// 외부에서 선언한 Reducer Import
-import { customReducer } from './assets/js/customReducer.js';
+import { useState } from 'react';
+import { Context } from './assets/js/Context.js';
 
 export default function App() {
-    // state와 dispatch 선언
-    const [products, dispatch] = useReducer(customReducer, []);
+    const [value, setValue] = useState(false);
+    const text = value ? '참' : '거짓';
     return (
-        <>
-            <h1>재고 목록</h1>
-            <Input dispatch={dispatch} />
-            <List products={products} dispatch={dispatch} />
-        </>
+        <Context.Provider value={text}>
+            <div style={{ border: '1px solid black' }}>
+                <h1>Parent</h1>
+                <button
+                    onClick={(e) => {
+                        setValue(!value);
+                    }}
+                >
+                    변경
+                </button>
+                <Children1>
+                    <Children2></Children2>
+                </Children1>
+            </div>
+        </Context.Provider>
     );
 }
