@@ -1,5 +1,14 @@
-이번 브랜치에서는 `Input`으로 State의 변경을 발생시켜 상태마다 UI를 바꿔주는 간단한 예제를 작성합니다.
+이번 Branch는 State를 구조화하는 방법에 대해서 정의합니다.
+State에 어떤 변수를 사용할지, 어떤 타입을 사용할지에 대해 선택해야 합니다. 최적화하지 않은 State를 사용하더라도 올바른 프로그램을 작성할 수 있지만 유지보수 측면에서 확인하기 어려우며 개발자의 실수를 통해 여러 사이드이펙트가 발생할 수 있습니다.
+이를 방지하기 위해서는 어떤 데이터를 어떻게 State화 해야할지 다뤄보려 합니다.
 
-https://www.notion.so/kimjihu-history/09-State-abb500ececb545aaa1f1015f0be7e4fc
+### 목차
 
-> 위 Notions에서는 명령형 UI와 선언형 UI에 대한 설명 및 State를 선언하는 방법을 작성했습니다. GitHub에서는 간단한 예제에 대한 코드를 올려두었고, Notions에 State를 선언할 때 순서를 정리하였으니 참고 부탁드립니다.
+1. State 그룹화하기
+2. State 모순 피하기
+3. State 불필요한 항목 제거 및 중복 제거하기
+4. 깊은 계층구조 지양하기
+
+위 내용에 대한 자세한 설명은 Notions에 정리해두었습니다.
+
+> https://www.notion.so/kimjihu-history/10-State-501011e9af264bcab20649786aa7fcd4
