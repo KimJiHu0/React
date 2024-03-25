@@ -1,0 +1,21 @@
+.layout {
+    display: flex;
+    width: 100px;
+    height: 100px;
+}
+.counter,
+.hover {
+    display: flex-start;
+    margin-left: 10px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 15%;
+}
+
+.fancy {
+    border: 2px solid red;
+}
+
+.hover:hover {
+    background-color: antiquewhite;
+}
