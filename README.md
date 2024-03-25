@@ -3,7 +3,7 @@
 ### 목차
 
 1. 여러 Component에서 동일한 State 값 공유하기
-2. 여러 Component에서 별도의 State 값 공유하기
+2. 여러 컴포넌트에서 State로 자식 Component 제어하기
 3. 각각의 Component에서 별도로 State 값 사용하기
 4. 제어 컴포넌트 vs 비제어 컴포넌트
 
