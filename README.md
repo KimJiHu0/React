@@ -3,8 +3,9 @@
 ### 목차
 
 1. 여러 Component에서 동일한 State 값 공유하기
-2. 각각의 Component에서 별도로 State 값 사용하기
-3. 제어 컴포넌트 vs 비제어 컴포넌트
+2. 여러 Component에서 별도의 State 값 공유하기
+3. 각각의 Component에서 별도로 State 값 사용하기
+4. 제어 컴포넌트 vs 비제어 컴포넌트
 
 위 내용에 대한 자세한 설명은 Notions에 정리해두었습니다.
 
