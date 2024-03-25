@@ -1,5 +1,5 @@
-이번 강의에서는 React에서 `Object`, `Array`를 수정하는 방법에 대해서 확인하고 있습니다.
+이번 브랜치에서는 `Input`으로 State의 변경을 발생시켜 상태마다 UI를 바꿔주는 간단한 예제를 작성합니다.
 
-위에 대한 내용은 Git에 코드로 올려놓았으며 자세한 사항은 아래 Notions에서 설명 확인이 가능합니다.
+https://www.notion.so/kimjihu-history/09-State-abb500ececb545aaa1f1015f0be7e4fc
 
-https://www.notion.so/kimjihu-history/07-5da7ff037c7a4f99b6a5905b4f2c9f94
+> 위 Notions에서는 명령형 UI와 선언형 UI에 대한 설명 및 State를 선언하는 방법을 작성했습니다. GitHub에서는 간단한 예제에 대한 코드를 올려두었고, Notions에 State를 선언할 때 순서를 정리하였으니 참고 부탁드립니다.
