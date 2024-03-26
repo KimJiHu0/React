@@ -1,80 +1,26 @@
-import { useState, useReducer } from 'react';
-import Input from './assets/components/Input.js';
-import List from './assets/components/List';
-
-import { TasksContext, TasksDispatchContext } from './assets/js/Context.js';
-
-function productReducer(tasks, action) {
-    switch (action.type) {
-        case 'added': {
-            return [
-                ...tasks,
-                {
-                    id: action.id,
-                    text: action.text,
-                    done: false,
-                },
-            ];
-        }
-        case 'changed': {
-            return tasks.map((t) => {
-                if (t.id === action.task.id) {
-                    return action.task;
-                } else {
-                    return t;
-                }
-            });
-        }
-        case 'deleted': {
-            return tasks.filter((t) => t.id !== action.id);
-        }
-        default: {
-            throw Error('Unknown action: ' + action.type);
-        }
-    }
-}
+import Sample1 from './assets/components/Sample1';
+import Sample2 from './assets/components/Sample2';
+import Sample3 from './assets/components/Sample3';
+import Sample4 from './assets/components/Sample4';
 
 export default function App() {
-    const [tasks, dispatch] = useReducer(productReducer, []);
-
-    // function handleAddTask(text) {
-    //     dispatch({
-    //         type: 'added',
-    //         id: nextId++,
-    //         text: text,
-    //     });
-    // }
-
-    // function handleChangeTask(task) {
-    //     dispatch({
-    //         type: 'changed',
-    //         task: task,
-    //     });
-    // }
-
-    // function handleDeleteTask(taskId) {
-    //     dispatch({
-    //         type: 'deleted',
-    //         id: taskId,
-    //     });
-    // }
-
     return (
         <>
-            <h1>Prague itinerary</h1>
-            <TasksContext.Provider value={tasks}>
-                <TasksDispatchContext.Provider value={dispatch}>
-                    <Input />
-                    <List />
-                </TasksDispatchContext.Provider>
-            </TasksContext.Provider>
+            <h1>Ref의 성격</h1>
+            <Sample1></Sample1>
+            <p>Ref는 변경이 일어나도 랜더링이 실행되지 않는다. 그래서 Ref는 랜더링 때 사용하지 않는다.</p>
+            <hr />
+            <Sample2 />
+            <p>하지만 State가 변경되어 랜더링이 되면 변경된 데이터를 확인할 수 있다.</p>
+            <hr />
+            <h1>ref에 DOM 담기</h1>
+            <Sample3 />
+            <p>
+                Input에 텍스트를 입력 후 버튼을 클릭하면 1초후에 alert이 뜬다. 근데 1초가 지나기 전에 Text를 수정할 때
+                수정한 값이 alert에 뿌려지길 원한다. 이럴 땐 Dom을 Ref에 담는 방법을 사용할 수 있다. ( 아래 예제 확인 )
+            </p>
+            <Sample4 />
+            <p>ref에 input을 담으면 current에 HTMLElement가 담긴다. 여기서 .value로 input의 값을 가져올 수 있다.</p>
         </>
     );
 }
-
-// let nextId = 3;
-// const initialTasks = [
-//     { id: 0, text: 'Visit Kafka Museum', done: true },
-//     { id: 1, text: 'Watch a puppet show', done: false },
-//     { id: 2, text: 'Lennon Wall pic', done: false },
-// ];
