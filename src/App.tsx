@@ -1,7 +1,7 @@
 import Sample1 from './assets/components/Sample1';
 import Sample2 from './assets/components/Sample2';
 import Sample3 from './assets/components/Sample3';
-import Sample4 from './assets/components/Sample4';
+import { Sample4 } from './assets/components/Sample4';
 import Sample5 from './assets/components/Sample5';
 import Sample6 from './assets/components/Sample6';
 import Sample7 from './assets/components/Sample7';
@@ -11,6 +11,7 @@ import { useRef } from 'react';
 
 export default function App() {
     const inputRef = useRef(null);
+    const inputForwardRef = useRef(null);
     return (
         <>
             <h1>예제1 : Input에 초점 맞추기</h1>
@@ -37,7 +38,7 @@ export default function App() {
             <hr />
             <h1>다른 컴포넌트의 DOM 노드에 접근하기</h1>
             <h3>Ref</h3>
-            <Sample4 ref={inputRef} />
+            <Sample4.UseRef ref={inputRef} />
             <button
                 onClick={() => {
                     inputRef.current.focus();
@@ -50,10 +51,10 @@ export default function App() {
                 사용한다.
             </p>
             <h3>forwardRef</h3>
-            <Sample4 ref={inputRef} />
+            <Sample4.UseForwardRef ref={inputForwardRef} />
             <button
                 onClick={() => {
-                    inputRef.current.focus();
+                    inputForwardRef.current.focus();
                 }}
             >
                 포커스

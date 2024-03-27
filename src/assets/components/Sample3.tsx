@@ -30,7 +30,9 @@ export default function Sample3() {
         <>
             <nav>
                 {personList.map((el) => (
-                    <button onClick={() => scrollToId(el.id)}>{el.name}</button>
+                    <button key={el.id} onClick={() => scrollToId(el.id)}>
+                        {el.name}
+                    </button>
                 ))}
             </nav>
             <div>
