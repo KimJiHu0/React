@@ -1,6 +1,10 @@
 import '../css/common.css';
 import { useRef } from 'react';
 export default function Sample1() {
+    const style = {
+        whidth: 300,
+        height: 300,
+    };
     const firstCatRef = useRef(null);
     const secondCatRef = useRef(null);
     const thirdCatRef = useRef(null);
@@ -20,7 +24,7 @@ export default function Sample1() {
         });
     };
     const handleScrollToThirdCat = () => {
-        firstCatRef.current.scrollIntoView({
+        thirdCatRef.current.scrollIntoView({
             behavior: 'smooth',
             block: 'nearest',
             inline: 'center',
@@ -37,13 +41,13 @@ export default function Sample1() {
             <div>
                 <ul>
                     <li>
-                        <img src="https://i.imgur.com/QIrZWGIs.jpg" alt="Tom" ref={firstCatRef} />
+                        <img style={style} src="https://i.imgur.com/QIrZWGIs.jpg" alt="Tom" ref={firstCatRef} />
                     </li>
                     <li>
-                        <img src="https://i.imgur.com/QIrZWGIs.jpg" alt="Maru" ref={secondCatRef} />
+                        <img style={style} src="https://i.imgur.com/QIrZWGIs.jpg" alt="Maru" ref={secondCatRef} />
                     </li>
                     <li>
-                        <img src="https://i.imgur.com/QIrZWGIs.jpg" alt="Jellylorum" ref={thirdCatRef} />
+                        <img style={style} src="https://i.imgur.com/QIrZWGIs.jpg" alt="Jellylorum" ref={thirdCatRef} />
                     </li>
                 </ul>
             </div>
