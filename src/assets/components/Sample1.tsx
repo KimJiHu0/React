@@ -1,15 +1,20 @@
 import { useRef } from 'react';
 export default function Sample1() {
-    const ref = useRef(0);
+    const inputRef = useRef(null);
+
+    const onFocus = () => {
+        inputRef.current.focus();
+    };
+
     return (
         <>
-            {ref.current}{' '}
+            <input ref={inputRef} />
             <button
                 onClick={() => {
-                    ref.current = ref.current + 1;
+                    onFocus();
                 }}
             >
-                더하기
+                Focus
             </button>
         </>
     );

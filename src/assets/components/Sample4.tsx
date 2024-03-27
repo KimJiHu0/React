@@ -1,23 +1,7 @@
-import { useState, useRef } from 'react';
-export default function Sample1() {
-    const ref = useRef(0);
+import { forwardRef, useRef } from 'react';
 
-    const handleSend = () => {
-        setTimeout(() => {
-            alert('Sending: ' + ref.current.value);
-        }, 3000);
-    };
+const Sample4 = forwardRef((props, ref) => {
+    return <input {...props} ref={ref} />;
+});
 
-    return (
-        <>
-            <input ref={ref} />
-            <button
-                onClick={() => {
-                    handleSend();
-                }}
-            >
-                보내기
-            </button>
-        </>
-    );
-}
+export default Sample4;

@@ -1,0 +1,20 @@
+.layout {
+    height: 100px;
+    border: 1px solid black;
+    overflow: auto;
+}
+
+.todo-layout {
+    display: flex;
+}
+
+.dot {
+    margin-top: 7px;
+    margin-left: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
+    justify-content: space-between;
+    width: 5px;
+    height: 5px;
+    background-color: black;
+}

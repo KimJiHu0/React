@@ -2,25 +2,70 @@ import Sample1 from './assets/components/Sample1';
 import Sample2 from './assets/components/Sample2';
 import Sample3 from './assets/components/Sample3';
 import Sample4 from './assets/components/Sample4';
+import Sample5 from './assets/components/Sample5';
+import Sample6 from './assets/components/Sample6';
+import Sample7 from './assets/components/Sample7';
+import Sample8 from './assets/components/Sample8';
+
+import { useRef } from 'react';
 
 export default function App() {
+    const inputRef = useRef(null);
     return (
         <>
-            <h1>Ref의 성격</h1>
-            <Sample1></Sample1>
-            <p>Ref는 변경이 일어나도 랜더링이 실행되지 않는다. 그래서 Ref는 랜더링 때 사용하지 않는다.</p>
+            <h1>Node에 대한 Ref 가져오기</h1>
+            <Sample1 />
+            <p>
+                useRef를 사용하면 초기에는 Null이 들어가는데, React가 해당 HTML의 노드를 생성하면서 선언된 Ref의
+                current에 넣는다. 그 후 DOM 노드에 엑세스하고 정의된 빌트인 브라우저 API를 사용할 수 있다.
+            </p>
             <hr />
             <Sample2 />
-            <p>하지만 State가 변경되어 랜더링이 되면 변경된 데이터를 확인할 수 있다.</p>
+            <p>
+                버튼을 클릭했을 때 원하는 DOM이 담긴 Element를 가운데로 오게하기 위해서는 'scrollIntoView' 함수를 사용할
+                수 있다.
+            </p>
             <hr />
             <h1>ref에 DOM 담기</h1>
             <Sample3 />
             <p>
-                Input에 텍스트를 입력 후 버튼을 클릭하면 1초후에 alert이 뜬다. 근데 1초가 지나기 전에 Text를 수정할 때
-                수정한 값이 alert에 뿌려지길 원한다. 이럴 땐 Dom을 Ref에 담는 방법을 사용할 수 있다. ( 아래 예제 확인 )
+                만일 동적으로 변하는 List에 대한 처리를 할 수 있다. ref에는 어떤 값이라도 담을 수 있기 때문에 노드들을
+                key, value로 담아준다. 그 후 클릭 시 해당 노드로 scrollIntoView해주면 된다. ref에 콜백함수를 작성하여
+                처리할 수 있다.
             </p>
-            <Sample4 />
-            <p>ref에 input을 담으면 current에 HTMLElement가 담긴다. 여기서 .value로 input의 값을 가져올 수 있다.</p>
+            <hr />
+            <h1>직접 선언한 컴포넌트에 ref 처리하기</h1>
+            <h3>Ref</h3>
+            <Sample4 ref={inputRef} />
+            <button
+                onClick={() => {
+                    inputRef.current.focus();
+                }}
+            >
+                포커스
+            </button>
+            <p>
+                직접 선언한 Component에는 ref로 props를 전달할 수 없다. 그래서 다른 DOM에 접근하려면 forwardRef를
+                사용한다.
+            </p>
+            <h3>forwardRef</h3>
+            <Sample4 ref={inputRef} />
+            <button
+                onClick={() => {
+                    inputRef.current.focus();
+                }}
+            >
+                포커스
+            </button>
+            <hr />
+            <h1>예제</h1>
+            <Sample5 />
+            <hr />
+            <Sample6 />
+            <hr />
+            <Sample7 />
+            <hr />
+            <Sample8 />
         </>
     );
 }
