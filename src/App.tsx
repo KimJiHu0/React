@@ -1,6 +1,7 @@
 import Sample1 from './assets/components/Sample1';
 import Sample2 from './assets/components/Sample2';
 import Sample3 from './assets/components/Sample3';
+import Sample4 from './assets/components/Sample4';
 
 import { useState } from 'react';
 
@@ -28,6 +29,8 @@ export default function App() {
                 Modal의 경우에도 개발환경일 떄 showModal 후 다시 effect를 실행하기 때문에 클린업 함수를 통해 close해주는
                 것이 좋다.
             </p>
+            <hr />
+            <Sample4 />
         </>
     );
 }
