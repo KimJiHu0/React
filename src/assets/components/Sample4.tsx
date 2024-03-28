@@ -11,6 +11,15 @@ Sample4.UseRef = ({ inputRef }) => {
     );
 };
 
+// 일반 props로 던져줬을 때
+Sample4.UseRef2 = ({ inputRef2 }) => {
+    return (
+        <>
+            <input ref={inputRef2} />
+        </>
+    );
+};
+
 // forwardRef를 사용했을 때
 Sample4.UseForwardRef = forwardRef((props, inputForwardRef) => {
     return (

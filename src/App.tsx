@@ -11,6 +11,7 @@ import { useRef } from 'react';
 
 export default function App() {
     const inputRef = useRef(null);
+    const inputRef2 = useRef(null);
     const inputForwardRef = useRef(null);
     return (
         <>
@@ -46,9 +47,17 @@ export default function App() {
             >
                 포커스
             </button>
+            <Sample4.UseRef2 inputRef2={inputRef2} />
+            <button
+                onClick={() => {
+                    inputRef2.current.focus();
+                }}
+            >
+                포커스
+            </button>
             <p>
                 직접 선언한 Component에는 ref로 props를 전달할 수 없다. 그래서 다른 DOM에 접근하려면 forwardRef를
-                사용한다.
+                사용한다. 다만 ref가 아닌 다른 props의 이름을 사용하게 되면 가능은 합니다.
             </p>
             <h3>forwardRef</h3>
             <Sample4.UseForwardRef ref={inputForwardRef} />
